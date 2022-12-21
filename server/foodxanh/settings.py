@@ -29,7 +29,7 @@ environ.Env.read_env(os.path.join(BASE_DIR, '.env'))
 SECRET_KEY = env('SECRET_KEY')
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False
+DEBUG = True
 
 ALLOWED_HOSTS = ['*']
 
@@ -147,11 +147,13 @@ COMPRESS_ROOT = BASE_DIR / 'static'
 
 COMPRESS_ENABLED = True
 
+COMPRESS_OFFLINE = True
+
 STATICFILES_FINDERS = ('compressor.finders.CompressorFinder',)
 
 # Core header
 
-CORS_ALLOW_ALL_ORIGINS = True # If this is used then `CORS_ALLOWED_ORIGINS` will not have any effect
-CORS_ALLOW_CREDENTIALS = True
-CORS_ALLOWED_ORIGINS = env('CORS_ALLOWED_ORIGINS').split(",") # If this is used, then not need to use `CORS_ALLOW_ALL_ORIGINS = True`
-CORS_ALLOWED_ORIGIN_REGEXES = env('CORS_ALLOWED_ORIGIN_REGEXES').split(",")
+# CORS_ALLOW_ALL_ORIGINS = True # If this is used then `CORS_ALLOWED_ORIGINS` will not have any effect
+# CORS_ALLOW_CREDENTIALS = True
+# CORS_ALLOWED_ORIGINS = env('CORS_ALLOWED_ORIGINS').split(",") # If this is used, then not need to use `CORS_ALLOW_ALL_ORIGINS = True`
+# CORS_ALLOWED_ORIGIN_REGEXES = env('CORS_ALLOWED_ORIGIN_REGEXES').split(",")
