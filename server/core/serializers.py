@@ -1,7 +1,17 @@
 from rest_framework import serializers
-from .models import Order, ProductImage, Product, OrderDetail, ProductAttribute
+from .models import Order, ProductImage, Product, OrderDetail, ProductAttribute, ProductSize
+
+
+class ProductSizeSerializer(serializers.ModelSerializer):
+
+    class Meta:
+        model = ProductSize
+        fields = '__all__'
+
 
 class ProductAttributeSerializer(serializers.ModelSerializer):
+    product_size = ProductSizeSerializer()
+
     class Meta:
         model = ProductAttribute
         fields = '__all__'
@@ -38,6 +48,7 @@ class ProductImageSerializer(serializers.ModelSerializer):
 
 class ProductSerializer(serializers.ModelSerializer):
     images_product = ProductImageSerializer(many=True)
+    attributes_product = ProductAttributeSerializer(many=True)
 
     class Meta:
         model = Product

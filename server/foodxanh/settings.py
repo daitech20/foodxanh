@@ -74,6 +74,9 @@ TEMPLATES = [
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
             ],
+            'libraries':{
+                'filter': 'core.templatetags.filter',
+            }
         },
     },
 ]
@@ -147,7 +150,7 @@ COMPRESS_ROOT = BASE_DIR / 'static'
 
 COMPRESS_ENABLED = True
 
-COMPRESS_OFFLINE = True
+# COMPRESS_OFFLINE = True
 
 STATICFILES_FINDERS = ('compressor.finders.CompressorFinder',)
 

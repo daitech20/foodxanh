@@ -1,16 +1,260 @@
 {% extends "_base.html" %}
-
+{% load filter %}
 {% block content %}
+<!-- Product Detail hidden -->
+<div id="ProductDetail" tabindex="-1" aria-hidden="true" data-modal-backdrop="static"
+class="fixed top-0 left-0 right-0 z-50 hidden  w-full p-4 overflow-x-hidden overflow-y-auto md:inset-0 h-modal md:h-full">
+<div class="relative w-full h-full max-w-6xl max-h-[600px] md:h-auto">
+    <div class="relative bg-white rounded-lg shadow ">
+        <!-- Content cart -->
+        <div class="sm:p-[30px] p-[10px]">
+            <div class="flex items-center justify-between pb-[20px] sm:text-[24px] text-[20px] font-[700]">
+                <h1 class="">Chi tiết sản phẩm</h1>
+                {{action}}
+                <button data-modal-toggle="ProductDetail" onclick="hideModal()"><i class="fa-solid fa-xmark"></i></button>
+            </div>
+            <div class="grid md:grid-cols-5 grid-cols-1 gap-[40px]">
+                <!--  -->
+                <div class="md:col-span-3 grid grid-cols-4 sm:gap-[20px] gap-[10px]">
+                    <div class="col-span-4">
+                        <div id="controls-carousel" class="relative" data-carousel="static">
+                            <!-- Carousel wrapper -->
+                            <div class="relative h-56 sm:h-64 overflow-hidden rounded-lg md:h-96" id="wrapper_product_image">
+                                <div class="hidden duration-700 ease-in-out" data-carousel-item="active">
+                                    <img id="carousel-item-0" src="/media/foodxanh.jpg" alt="" class="w-full ">
+                                </div>
+                                <div class="hidden duration-700 ease-in-out" data-carousel-item>
+                                    <img  id="carousel-item-1" src="/media/menu.jpg" alt="" class="w-full ">
+                                </div>
+                                <div class="hidden duration-700 ease-in-out" data-carousel-item>
+                                    <img id="carousel-item-2" src="/media/foodxanh.jpg" alt="" class="w-full ">
+                                </div>
+                            </div>
+                            <!-- Slider controls -->
+                            <button type="button"
+                                class="absolute top-0 left-0 z-30 flex items-center justify-center h-full px-4 cursor-pointer group focus:outline-none"
+                                data-carousel-prev>
+                                <span
+                                    class="inline-flex items-center justify-center w-10 h-10 rounded-full bg-white/30  group-hover:bg-white/50 group-focus:ring-4 group-focus:ring-white  group-focus:outline-none">
+                                    <svg aria-hidden="true" class="w-6 h-6 text-white " fill="none"
+                                        stroke="currentColor" viewBox="0 0 24 24"
+                                        xmlns="http://www.w3.org/2000/svg">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                            d="M15 19l-7-7 7-7"></path>
+                                    </svg>
 
+                                </span>
+                            </button>
+                            <button type="button"
+                                class="absolute top-0 right-0 z-30 flex items-center justify-center h-full px-4 cursor-pointer group focus:outline-none"
+                                data-carousel-next>
+                                <span
+                                    class="inline-flex items-center justify-center w-10 h-10 rounded-full bg-white/30 dark:bg-gray-800/30 group-hover:bg-white/50 dark:group-hover:bg-gray-800/60 group-focus:ring-4 group-focus:ring-white dark:group-focus:ring-gray-800/70 group-focus:outline-none">
+                                    <svg aria-hidden="true" class="w-6 h-6 text-white dark:text-gray-800"
+                                        fill="none" stroke="currentColor" viewBox="0 0 24 24"
+                                        xmlns="http://www.w3.org/2000/svg">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                            d="M9 5l7 7-7 7"></path>
+                                    </svg>
+
+                                </span>
+                            </button>
+                        </div>
+                    </div>
+
+                </div>
+                <!--  infor right-->
+                <div class="md:col-span-2">
+                    <h1 class="sm:text-[24px] text-[20px] font-[500]" id="name_product_detail"></h1>
+                    <h2 class="sm:text-[22px] text-[18px] font-[650] py-[10px]" id="product_price_detail"></h2>
+                    <ul class="flex flex-wrap items-center pt-[6px] sm:text-[16px] text-[14px]" id="ul_product_size">
+                        <!--for loop-->
+                    </ul>
+                    <div
+                        class="flex items-center justify-center my-[10px] rounded-[6px] bg-[#f3f5f9] sm:h-[50px] h-[40px]">
+                        <button><i class="fa-solid fa-plus"></i></button>
+                        <h1 class="text-[24px] px-[40px]">1</h1>
+                        <button><i class="fa-solid fa-minus"></i></button>
+                    </div>
+                    <button class=" bg-[#80d8c7] w-full text-white sm:h-[50px] h-[40px] rounded-[6px]">
+                        <i class="fa-solid fa-briefcase"></i>
+                        Thêm vào giỏ hàng
+                    </button>
+                    <h3 class="text-[16px] font-[500] py-[10px]">Chi tiết sản phẩm :</h3>
+
+                    <div style="white-space: pre-wrap;">
+                        <h4 id="product_desc_detail"></h4>
+                    </div>
+                    
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</div>
+<!-- Category hidden -->
+<div id="cate" tabindex="-1" aria-hidden="true"
+class="fixed top-0 left-0 right-0 z-50 hidden  w-full p-4 overflow-x-hidden overflow-y-auto md:inset-0 h-modal md:h-full">
+<div class="relative w-full h-full max-w-md max-h-[600px] md:h-auto">
+    <div class="relative bg-white rounded-lg shadow ">
+        <!-- Content cart -->
+        <div class="p-[20px]">
+            <div class="flex items-center justify-between pb-[20px] sm:text-[24px] text-[20px] font-[700]">
+                <h1 class="">Danh mục</h1>
+                <button data-modal-toggle="cate"><i class="fa-solid fa-xmark"></i></button>
+            </div>
+            <ul class="border rounded-[10px] shadow-md">
+                {% for category in product_categories %}
+                <li class="border-b">
+                    <button class="w-full flex items-center hover:bg-[#f3f6f9] ">
+                        <img src="{{category.image.url}}" alt="{{category.desc}}">
+                        <h1>{{category.name}}</h1>
+                    </button>
+                </li>
+                {% endfor %}
+            </ul>
+        </div>
+    </div>
+</div>
+</div>
+
+<!-- banner -->
+<nav class="sm:mx-[30px] mx-[20px] sm:pt-[100px] pt-[70px]">
+<div>
+    <img src="/src/img/1.png" alt="">
+</div>
+</nav>
+
+<div class="lg:hidden block py-[10px] ">
+<button class="flex items-center  text-[18px] font-[600] mx-auto" data-modal-toggle="cate">
+    <ion-icon name="apps-outline"></ion-icon>
+    <h1 class="
+    pl-[10px]">Danh mục sản phẩm</h1>
+</button>
+</div>
+<main class="grid lg:grid-cols-5 sm:grid-cols-3 grid-cols-1 sm:px-[30px] px-[10px] lg:py-[50px] py-[20px] gap-[25px] ">
+    <div class="lg:block hidden main-left">
+        <ul class="border rounded-[10px] shadow-md">
+            {% for category in product_categories %}
+            <li class="border-b">
+                <button class="w-full flex items-center hover:bg-[#f3f6f9] ">
+                    <img src="{{category.image.url}}" alt="{{category.desc}}">
+                    <h1>{{category.name}}</h1>
+                </button>
+            </li>
+            {% endfor %}
+        </ul>
+    </div>
+    <div class="lg:col-span-3 sm:col-span-2 grid lg:grid-cols-3 md:grid-cols-2 sm:grid-cols-2 grid-cols-2 gap-[15px] main-center">
+        {% for product in products %}
+        <div class="products">
+            <button href=""
+                class="border rounded-[5px] shadow-lg text-center hover:border-[#0faf25] hover:border-[2px]"
+                data-modal-toggle="ProductDetail" onclick="getProduct({{product.id}})">
+                <img src="{{product.image.url}}" alt=""
+                    class="sm:px-[20px] px-[10px] sm:pt-[20px] pt-[10px] pb-[10px] hover:scale-105 duration-200">
+                {% if product.discount %}
+                <h1 class="sm:text-[16px] text-[12px] font-[500] line-through text-[#919191]">{{product.price_discount}} VND</h1>
+                {% endif %}
+                <h1 class="sm:text-[20px] text-[16px] font-[700]">{{product.price}} VND</h1>
+                <h2 class="sm:text-[18px] text-[14px] pb-[20px]">{{product.name}}</h2>
+            </button>
+        </div>
+        {% endfor %}
+    </div>
+
+    <div class="main-right">
+        <div class=" ">
+            <img src="/src/img/4.png" alt="" class=" mx-auto">
+        </div>
+    </div>
+
+</main>
 
 <script>
-    function accept() {
-        console.log("hello")
+    var product = {};
+    function getProduct(id) {
+        axios.get('/api/product/'+id)
+        .then(response => {
+            product = response.data
+
+            // name product detail
+            document.getElementById('name_product_detail').innerHTML = product.name;
+            // price
+            document.getElementById('product_price_detail').innerHTML = product.price + ' VNĐ';
+            // desc
+            document.getElementById('product_desc_detail').innerHTML = product.desc;
+            
+
+            // button_product_image
+            for (key in product.images_product) {
+                // var button = document.createElement("button");
+                // button.classList.add("border");
+                // button.classList.add("p-[6px]");
+                // button.classList.add("rounded-[10px]");
+                // var img = document.createElement("img");
+                // img.src = product.images_product[key].image;
+                // button.appendChild(img);
+                // document.getElementById("button_product_image").appendChild(button);
+
+                if (key < 3) {
+                    var wraper_img = document.getElementById("carousel-item-"+key);
+                    wraper_img.src = product.images_product[key].image   
+                }
+
+            }
+
+            for (key in product.attributes_product) {
+                var li = document.createElement("li");
+                var input = document.createElement("input")
+                input.type = "radio"
+                input.id = product.attributes_product[key].product_size.id
+                input.name = "hosting"
+                input.value = product.attributes_product[key].product_size.id
+                input.classList.add("hidden")
+                input.classList.add("peer")
+                input.setAttribute("required", "")
+                li.appendChild(input)
+                
+                var label = document.createElement("label")
+                label.setAttribute("for", product.attributes_product[key].product_size.id)
+                label.classList.add("inline-flex")
+                label.classList.add("justify-between")
+                label.classList.add("items-center")
+                label.classList.add("p-[10px]")
+                label.classList.add("w-full")
+                label.classList.add("bg-white")
+                label.classList.add("rounded-[10px]")
+                label.classList.add("border-[1px]")
+                label.classList.add("cursor-pointer")
+                label.classList.add("peer-checked:border-[#1a8f4f]")
+                label.classList.add("peer-checked:text-[#2fa564]")
+                label.classList.add("hover:scale-105")
+                label.classList.add("hover:border-blue-600")
+                var div1 = document.createElement("div1")
+                div1.classList.add("block")
+                var div2 = document.createElement("div")
+                div2.classList.add("font-[500]")
+                div2.innerHTML = product.attributes_product[key].product_size.size
+                div1.appendChild(div2)
+                label.appendChild(div1)
+                li.appendChild(label)
+
+                document.getElementById("ul_product_size").appendChild(li);
+            }
+        })
+        .catch(error => console.log(error))
     }
 
-    function denied() {
-        console.log("bye")
+    function hideModal() {
+        // var button_product_image = document.getElementById("button_product_image")
+        // while (button_product_image.hasChildNodes()) {
+        //     button_product_image.removeChild(button_product_image.firstChild);
+        // }
+        var ul = document.getElementById("ul_product_size")
+        while (ul.hasChildNodes()) {
+            ul.removeChild(ul.firstChild);
+        }
     }
 </script>
-
 {% endblock content %}

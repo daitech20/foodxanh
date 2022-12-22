@@ -1,37 +1,167 @@
 {% load compress %}
 {% load static %}
-
+{% load filter %}
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Django + Tailwind CSS + Flowbite</title>
+
+    {% block title %}
+    {% endblock title %}
 
     {% compress css %}
     <link rel="stylesheet" type='text/css' href="{% static 'src/output.css' %}">
     {% endcompress %}
 
+    <script src="https://kit.fontawesome.com/f662e8ecc5.js" crossorigin="anonymous"></script>
+    <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
+    <script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+
 </head>
 
-<body class="bg-green-50">
+<body>
+    <!-- Header -->
+    <header class="fixed flex items-center justify-between bg-white sm:px-[30px] px-[10px] w-full border-b-[1px] ">
+        <!-- Logo -->
+        <div class="flex items-center">
+            <button><i class="fa-solid fa-bars sm:text-[24px] text-[16px]"></i></button>
+            <h1 class="sm:text-[28px] text-[26px] font-[700] pl-[20px] text-[#48df6e] ">
+                <a href="" class="italic">FoodXanh</a>
+            </h1>
+        </div>
+        <!-- Search -->
+        <div class="items-center py-[14px] sm:block hidden">
+            <input type="text"
+                class="h-[50px] border lg:w-[500px] md:w-[380px] sm:w-[260px] pl-[20px] rounded-tl-[10px] rounded-bl-[10px]"
+                placeholder="Search Here">
+            <button class="border h-[50px] px-[20px] rounded-tr-[10px]  rounded-br-[10px]">
+                <i class="fa-solid fa-magnifying-glass text-[16px]"></i>
+            </button>
+        </div>
+        <div class="sm:hidden block py-[14px]">
+            <button>
+                <i class="fa-solid fa-magnifying-glass sm:text-[24px] text-[16px]"></i>
+            </button>
+        </div>
+        <!-- icon Cart -->
+        <div>
+            <button class="flex items-center" type="button" data-modal-toggle="MyCart">
+                <i class="fa-solid fa-cart-shopping sm:text-[24px] text-[16px]"></i>
+                <span class="bg-red-600 text-white rounded-full px-[7px]">1</span>
+            </button>
+        </div>
+    </header>
+    <!-- End Header -->
 
-    <!-- Add nav -->
-    
-    <!-- End of new HTML -->
+    <!-- Cart-->
+    <div id="MyCart" tabindex="-1" aria-hidden="true"
+        class="fixed top-0 left-0 right-0 z-50 hidden w-full p-4 overflow-x-hidden overflow-y-auto md:inset-0 h-modal md:h-full">
+        <div class="relative w-full h-full max-w-2xl max-h-[600px] md:h-auto">
+            <div class="relative bg-white rounded-lg shadow ">
+                <!-- Content cart -->
+                <div class="sm:p-[30px] p-[10px]">
+                    <!-- menu top -->
+                    <div class="flex items-center justify-between sm:pb-[20px] pb-[10px] border-b ">
+                        <h1 class="sm:text-[24px] text-[18x] font-[700]">Giỏ hàng</h1>
+                        <div class="flex items-center sm:text-[16px] text-[14px]">
+                            <button class="flex items-center text-[#575757] pr-[10px] hover:text-red-600">
+                                <i class="fa-solid fa-trash"></i>
+                                <h1 class="pl-[6px]">Xóa tất cả</h1>
+                            </button>
+                            <button data-modal-toggle="MyCart"
+                                class="text-[24px] pl-[20px] font-[600] hover:scale-110 hover:text-red-600  "><i
+                                    class="fa-solid fa-xmark"></i></button>
+                        </div>
+                    </div>
+                    <!-- San pham trong gio hang -->
+                    <div class="flex items-center justify-between py-[10px] border-b">
+                        <div class="sm:p-[10px] p-[6px] border rounded-[5px]">
+                            <img src="/src/img/2.jpg" alt="" class="sm:h-[90px] h-[70px] w-auto">
+                        </div>
+                        <div class="sm:text-[18px] text-[13px] font-[600] ">
+                            <h1 class="">Nem chua nha trang</h1>
+                            <h2 class="sm:text-[16px] text-[12px] line-through text-[#919191] italic font-[400] ">95.000
+                                VND</h2>
+                            <h3 class="font-[500] ">100.000 VND</h3>
 
-    <div class="container mx-auto mt-4">
-        {% block content %}
-        {% endblock content %}
+                            <div class="flex items-center ">
+                                <button
+                                    class="border-[2px] rounded-full sm:px-[6px] px-[4px] hover:border-red-600 hover:text-red-600"><i
+                                        class="fa-solid fa-plus"></i></button>
+                                <h1 class="sm:px-[20px] px-[10px]">1</h1>
+                                <button
+                                    class="border-[2px] rounded-full sm:px-[6px] px-[4px] hover:border-red-600 hover:text-red-600"><i
+                                        class="fa-solid fa-minus"></i></button>
+                            </div>
+                        </div>
+                        <div>
+                            <button class="text-[22px] hover:text-red-600 ">
+                                <i class="fa-regular fa-circle-xmark"></i>
+                            </button>
+                        </div>
+                    </div>
+                    <div class="flex items-center justify-between py-[10px] border-b">
+                        <div class="sm:p-[10px] p-[6px] border rounded-[5px]">
+                            <img src="/src/img/2.jpg" alt="" class="sm:h-[90px] h-[70px] w-auto">
+                        </div>
+                        <div class="sm:text-[18px] text-[13px] font-[600] ">
+                            <h1 class="">Nem chua nha trang</h1>
+                            <h2 class="sm:text-[16px] text-[12px] line-through text-[#919191] italic font-[400] ">95.000
+                                VND</h2>
+                            <h3 class="font-[500] ">100.000 VND</h3>
+
+                            <div class="flex items-center ">
+                                <button
+                                    class="border-[2px] rounded-full sm:px-[6px] px-[4px] hover:border-red-600 hover:text-red-600"><i
+                                        class="fa-solid fa-plus"></i></button>
+                                <h1 class="sm:px-[20px] px-[10px]">1</h1>
+                                <button
+                                    class="border-[2px] rounded-full sm:px-[6px] px-[4px] hover:border-red-600 hover:text-red-600"><i
+                                        class="fa-solid fa-minus"></i></button>
+                            </div>
+                        </div>
+                        <div>
+                            <button class="text-[22px] hover:text-red-600 ">
+                                <i class="fa-regular fa-circle-xmark"></i>
+                            </button>
+                        </div>
+                    </div>
+                    <!--Money-->
+                    <div class="flex justify-between sm:text-[20px] text-[14px] font-[600] border-t pt-[10px]">
+                        <h1>Tổng tiền :</h1>
+                        <h2>100.000 VND</h2>
+                    </div>
+                    <div class="sm:text-[16px] text-[14px] text-[#4e4e4e] sm:my-[20px] my-[10px]">
+                        <h1>Bấm thanh toán ngay để tiến hành quá trình thanh toán .
+                        </h1>
+                    </div>
+                    <!-- Checkout -->
+                    <button
+                        class="w-full text-white bg-[#1db863] text-center sm:h-[50px] h-[40px] rounded-[5px] sm:text-[18px] text-[16px] font-[600] hover:scale-105">
+                        Thanh toán ngay
+                    </button>
+                </div>
+            </div>
+        </div>
     </div>
+    <!-- End Cart -->
 
-    <!-- Add foot -->
-    
-    <!-- End of new HTML -->
+    {% block content %}
+    {% endblock content %}
+
+    <!-- Footer -->
+    <footer>
+        <div class="border-t sm:py-[20px] py-[10px] text-center sm:mx-[30px] mx-[10px]">
+            <h1 class="sm:text-[16px] text-[12px]">© Copyright 2022 RedQ, Inc. All rights reserved</h1>
+        </div>
+    </footer>
+    <!-- End Footer -->
 
     <script src="https://unpkg.com/flowbite@1.5.5/dist/flowbite.js"></script>
+    
 </body>
 
 </html>

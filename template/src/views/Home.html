@@ -1,0 +1,416 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link href="../../dist/output.css" rel="stylesheet">
+    <script src="https://kit.fontawesome.com/f662e8ecc5.js" crossorigin="anonymous"></script>
+    <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
+    <script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
+</head>
+
+<body class="">
+
+    <header class="fixed flex items-center justify-between bg-white sm:px-[30px] px-[10px] w-full border-b-[1px] ">
+        <!-- Logo -->
+        <div class="flex items-center">
+            <button><i class="fa-solid fa-bars sm:text-[24px] text-[16px]"></i></button>
+            <h1 class="sm:text-[28px] text-[26px] font-[700] pl-[20px] text-[#48df6e] ">
+                <a href="" class="italic">FoodXanh</a>
+            </h1>
+        </div>
+        <!-- Search -->
+        <div class="items-center py-[14px] sm:block hidden">
+            <input type="text"
+                class="h-[50px] border lg:w-[500px] md:w-[380px] sm:w-[260px] pl-[20px] rounded-tl-[10px] rounded-bl-[10px]"
+                placeholder="Search Here">
+            <button class="border h-[50px] px-[20px] rounded-tr-[10px]  rounded-br-[10px]">
+                <i class="fa-solid fa-magnifying-glass text-[16px]"></i>
+            </button>
+        </div>
+        <div class="sm:hidden block py-[14px]">
+            <button>
+                <i class="fa-solid fa-magnifying-glass sm:text-[24px] text-[16px]"></i>
+            </button>
+        </div>
+        <!-- icon Cart -->
+        <div>
+            <button class="flex items-center" type="button" data-modal-toggle="MyCart">
+                <i class="fa-solid fa-cart-shopping sm:text-[24px] text-[16px]"></i>
+                <span class="bg-red-600 text-white rounded-full px-[7px]">1</span>
+            </button>
+        </div>
+
+    </header>
+
+    <!-- Cart-->
+    <div id="MyCart" tabindex="-1" aria-hidden="true"
+        class="fixed top-0 left-0 right-0 z-50 hidden w-full p-4 overflow-x-hidden overflow-y-auto md:inset-0 h-modal md:h-full">
+        <div class="relative w-full h-full max-w-2xl max-h-[600px] md:h-auto">
+            <div class="relative bg-white rounded-lg shadow ">
+                <!-- Content cart -->
+                <div class="sm:p-[30px] p-[10px]">
+                    <!-- menu top -->
+                    <div class="flex items-center justify-between sm:pb-[20px] pb-[10px] border-b ">
+                        <h1 class="sm:text-[24px] text-[18x] font-[700]">Giỏ hàng</h1>
+                        <div class="flex items-center sm:text-[16px] text-[14px]">
+                            <button class="flex items-center text-[#575757] pr-[10px] hover:text-red-600">
+                                <i class="fa-solid fa-trash"></i>
+                                <h1 class="pl-[6px]">Xóa tất cả</h1>
+                            </button>
+                            <button data-modal-toggle="MyCart"
+                                class="text-[24px] pl-[20px] font-[600] hover:scale-110 hover:text-red-600  "><i
+                                    class="fa-solid fa-xmark"></i></button>
+                        </div>
+                    </div>
+                    <!-- San pham trong gio hang -->
+                    <div class="flex items-center justify-between py-[10px] border-b">
+                        <div class="sm:p-[10px] p-[6px] border rounded-[5px]">
+                            <img src="/src/img/2.jpg" alt="" class="sm:h-[90px] h-[70px] w-auto">
+                        </div>
+                        <div class="sm:text-[18px] text-[13px] font-[600] ">
+                            <h1 class="">Nem chua nha trang</h1>
+                            <h2 class="sm:text-[16px] text-[12px] line-through text-[#919191] italic font-[400] ">95.000
+                                VND</h2>
+                            <h3 class="font-[500] ">100.000 VND</h3>
+
+                            <div class="flex items-center ">
+                                <button
+                                    class="border-[2px] rounded-full sm:px-[6px] px-[4px] hover:border-red-600 hover:text-red-600"><i
+                                        class="fa-solid fa-plus"></i></button>
+                                <h1 class="sm:px-[20px] px-[10px]">1</h1>
+                                <button
+                                    class="border-[2px] rounded-full sm:px-[6px] px-[4px] hover:border-red-600 hover:text-red-600"><i
+                                        class="fa-solid fa-minus"></i></button>
+                            </div>
+                        </div>
+                        <div>
+                            <button class="text-[22px] hover:text-red-600 ">
+                                <i class="fa-regular fa-circle-xmark"></i>
+                            </button>
+                        </div>
+                    </div>
+                    <div class="flex items-center justify-between py-[10px] border-b">
+                        <div class="sm:p-[10px] p-[6px] border rounded-[5px]">
+                            <img src="/src/img/2.jpg" alt="" class="sm:h-[90px] h-[70px] w-auto">
+                        </div>
+                        <div class="sm:text-[18px] text-[13px] font-[600] ">
+                            <h1 class="">Nem chua nha trang</h1>
+                            <h2 class="sm:text-[16px] text-[12px] line-through text-[#919191] italic font-[400] ">95.000
+                                VND</h2>
+                            <h3 class="font-[500] ">100.000 VND</h3>
+
+                            <div class="flex items-center ">
+                                <button
+                                    class="border-[2px] rounded-full sm:px-[6px] px-[4px] hover:border-red-600 hover:text-red-600"><i
+                                        class="fa-solid fa-plus"></i></button>
+                                <h1 class="sm:px-[20px] px-[10px]">1</h1>
+                                <button
+                                    class="border-[2px] rounded-full sm:px-[6px] px-[4px] hover:border-red-600 hover:text-red-600"><i
+                                        class="fa-solid fa-minus"></i></button>
+                            </div>
+                        </div>
+                        <div>
+                            <button class="text-[22px] hover:text-red-600 ">
+                                <i class="fa-regular fa-circle-xmark"></i>
+                            </button>
+                        </div>
+                    </div>
+                    <!--Money-->
+                    <div class="flex justify-between sm:text-[20px] text-[14px] font-[600] border-t pt-[10px]">
+                        <h1>Tổng tiền :</h1>
+                        <h2>100.000 VND</h2>
+                    </div>
+                    <div class="sm:text-[16px] text-[14px] text-[#4e4e4e] sm:my-[20px] my-[10px]">
+                        <h1>Bấm thanh toán ngay để tiến hành quá trình thanh toán .
+                        </h1>
+                    </div>
+                    <!-- Checkout -->
+                    <button
+                        class="w-full text-white bg-[#1db863] text-center sm:h-[50px] h-[40px] rounded-[5px] sm:text-[18px] text-[16px] font-[600] hover:scale-105">
+                        Thanh toán ngay
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Product Detail hidden -->
+    <div id="ProductDetail" tabindex="-1" aria-hidden="true"
+        class="fixed top-0 left-0 right-0 z-50 hidden  w-full p-4 overflow-x-hidden overflow-y-auto md:inset-0 h-modal md:h-full">
+        <div class="relative w-full h-full max-w-6xl max-h-[600px] md:h-auto">
+            <div class="relative bg-white rounded-lg shadow ">
+                <!-- Content cart -->
+                <div class="sm:p-[30px] p-[10px]">
+                    <div class="flex items-center justify-between pb-[20px] sm:text-[24px] text-[20px] font-[700]">
+                        <h1 class="">Product Details</h1>
+                        <button data-modal-toggle="ProductDetail"><i class="fa-solid fa-xmark"></i></button>
+                    </div>
+                    <div class="grid md:grid-cols-5 grid-cols-1 gap-[40px]">
+                        <!--  -->
+                        <div class="md:col-span-3 grid grid-cols-4 sm:gap-[20px] gap-[10px]">
+                            <div class="">
+                                <button class="border p-[6px] rounded-[10px]">
+                                    <img src="/src/img/2.jpg" alt="">
+                                </button>
+                                <button class="border p-[6px] rounded-[10px] my-[10px]">
+                                    <img src="/src/img/2.jpg" alt="">
+                                </button>
+                                <button class="border p-[6px] rounded-[10px]">
+                                    <img src="/src/img/2.jpg" alt="">
+                                </button>
+                            </div>
+                            <div class="col-span-3">
+                                <div id="controls-carousel" class="relative" data-carousel="static">
+                                    <!-- Carousel wrapper -->
+                                    <div class="relative h-56 sm:h-64 overflow-hidden rounded-lg md:h-96">
+                                        <!-- Item 1 -->
+                                        <div class="hidden duration-700 ease-in-out" data-carousel-item>
+                                            <img src="/src/img/2.jpg" alt="" class="w-full ">
+                                        </div>
+                                        <!-- Item 2 -->
+                                        <div class="hidden duration-700 ease-in-out" data-carousel-item="active">
+                                            <img src="/src/img/2.jpg" alt="" class="w-full ">
+                                        </div>
+                                        <!-- Item 3 -->
+                                        <div class="hidden duration-700 ease-in-out" data-carousel-item>
+                                            <img src="/src/img/2.jpg" alt="" class="w-full ">
+                                        </div>
+                                    </div>
+                                    <!-- Slider controls -->
+                                    <button type="button"
+                                        class="absolute top-0 left-0 z-30 flex items-center justify-center h-full px-4 cursor-pointer group focus:outline-none"
+                                        data-carousel-prev>
+                                        <span
+                                            class="inline-flex items-center justify-center w-10 h-10 rounded-full bg-white/30  group-hover:bg-white/50 group-focus:ring-4 group-focus:ring-white  group-focus:outline-none">
+                                            <svg aria-hidden="true" class="w-6 h-6 text-white " fill="none"
+                                                stroke="currentColor" viewBox="0 0 24 24"
+                                                xmlns="http://www.w3.org/2000/svg">
+                                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                                    d="M15 19l-7-7 7-7"></path>
+                                            </svg>
+
+                                        </span>
+                                    </button>
+                                    <button type="button"
+                                        class="absolute top-0 right-0 z-30 flex items-center justify-center h-full px-4 cursor-pointer group focus:outline-none"
+                                        data-carousel-next>
+                                        <span
+                                            class="inline-flex items-center justify-center w-10 h-10 rounded-full bg-white/30 dark:bg-gray-800/30 group-hover:bg-white/50 dark:group-hover:bg-gray-800/60 group-focus:ring-4 group-focus:ring-white dark:group-focus:ring-gray-800/70 group-focus:outline-none">
+                                            <svg aria-hidden="true" class="w-6 h-6 text-white dark:text-gray-800"
+                                                fill="none" stroke="currentColor" viewBox="0 0 24 24"
+                                                xmlns="http://www.w3.org/2000/svg">
+                                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                                    d="M9 5l7 7-7 7"></path>
+                                            </svg>
+
+                                        </span>
+                                    </button>
+                                </div>
+                            </div>
+
+                        </div>
+                        <!--  infor right-->
+                        <div class="md:col-span-2">
+                            <h1 class="sm:text-[24px] text-[20px] font-[500]">Nem Nuong Nha Trang</h1>
+                            <h2 class="sm:text-[22px] text-[18px] font-[650] py-[10px]">100.000 VND</h2>
+                            <ul class="flex flex-wrap items-center pt-[6px] sm:text-[16px] text-[14px]">
+                                <li>
+                                    <input type="radio" id="1" name="hosting" value="1" class="hidden peer" required>
+                                    <label for="1"
+                                        class="inline-flex justify-between items-center p-[10px] w-full  bg-white rounded-[10px] border-[1px] cursor-pointer  peer-checked:border-[#1a8f4f] peer-checked:text-[#2fa564] hover:scale-105 hover:border-blue-600 ">
+                                        <div class="block">
+                                            <div class="font-[500]">1.4kg</div>
+                                        </div>
+                                    </label>
+                                </li>
+                                <li class="px-[10px]">
+                                    <input type="radio" id="2" name="hosting" value="2" class="hidden peer" required>
+                                    <label for="2"
+                                        class="inline-flex justify-between items-center p-[10px] w-full  bg-white rounded-[10px] border-[1px] cursor-pointer  peer-checked:border-[#1a8f4f] peer-checked:text-[#2fa564] hover:scale-105 hover:border-blue-600 ">
+                                        <div class="block">
+                                            <div class="font-[500]">2kg</div>
+                                        </div>
+                                    </label>
+                                </li>
+                                <li>
+                                    <input type="radio" id="3" name="hosting" value="3" class="hidden peer" required>
+                                    <label for="3"
+                                        class="inline-flex justify-between items-center p-[10px] w-full  bg-white rounded-[10px] border-[1px] cursor-pointer  peer-checked:border-[#1a8f4f] peer-checked:text-[#2fa564] hover:scale-105 hover:border-blue-600 ">
+                                        <div class="block">
+                                            <div class="font-[500]">3kg</div>
+                                        </div>
+                                    </label>
+                                </li>
+                            </ul>
+                            <div
+                                class="flex items-center justify-center my-[10px] rounded-[6px] bg-[#f3f5f9] sm:h-[50px] h-[40px]">
+                                <button><i class="fa-solid fa-plus"></i></button>
+                                <h1 class="text-[24px] px-[40px]">1</h1>
+                                <button><i class="fa-solid fa-minus"></i></button>
+                            </div>
+                            <button class=" bg-[#80d8c7] w-full text-white sm:h-[50px] h-[40px] rounded-[6px]">
+                                <i class="fa-solid fa-briefcase"></i>
+                                Thêm vào giỏ hàng
+                            </button>
+                            <h3 class="text-[16px] font-[500] py-[10px]">Chi tiết sản phẩm :</h3>
+                            <h4>Vegetables are parts of plants that are consumed by humans or other animals as food. the
+                                first meaning remains commonly used and is applied to plants collectively to ask all
+                                edible plant matter, including the flowers, fruits, stems, leaves, roots</h4>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Category hidden -->
+    <div id="cate" tabindex="-1" aria-hidden="true"
+        class="fixed top-0 left-0 right-0 z-50 hidden  w-full p-4 overflow-x-hidden overflow-y-auto md:inset-0 h-modal md:h-full">
+        <div class="relative w-full h-full max-w-md max-h-[600px] md:h-auto">
+            <div class="relative bg-white rounded-lg shadow ">
+                <!-- Content cart -->
+                <div class="p-[20px]">
+                    <div class="flex items-center justify-between pb-[20px] sm:text-[24px] text-[20px] font-[700]">
+                        <h1 class="">Danh mục</h1>
+                        <button data-modal-toggle="cate"><i class="fa-solid fa-xmark"></i></button>
+                    </div>
+                    <ul class="border rounded-[10px] shadow-md">
+                        <li class="border-b">
+                            <button class="w-full flex items-center hover:bg-[#f3f6f9] ">
+                                <img src="/src/img/3.png" alt="">
+                                <h1>Nem</h1>
+                            </button>
+                        </li>
+                        <li class="border-b">
+                            <button class="w-full flex items-center hover:bg-[#f3f6f9] ">
+                                <img src="/src/img/3.png" alt="">
+                                <h1>Nem</h1>
+                            </button>
+                        </li>
+                        <li class="border-b">
+                            <button class="w-full flex items-center hover:bg-[#f3f6f9] ">
+                                <img src="/src/img/3.png" alt="">
+                                <h1>Nem</h1>
+                            </button>
+                        </li>
+
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- banner -->
+    <nav class="sm:mx-[30px] mx-[20px] sm:pt-[100px] pt-[70px]">
+        <div>
+            <img src="/src/img/1.png" alt="">
+        </div>
+    </nav>
+
+    <div class="lg:hidden block py-[10px] ">
+        <button class="flex items-center  text-[18px] font-[600] mx-auto" data-modal-toggle="cate">
+            <ion-icon name="apps-outline"></ion-icon>
+            <h1 class="
+            pl-[10px]">Danh mục sản phẩm</h1>
+        </button>
+    </div>
+    <main
+        class="grid lg:grid-cols-5 sm:grid-cols-3 grid-cols-1 sm:px-[30px] px-[10px] lg:py-[50px] py-[20px] gap-[25px] ">
+
+        <div class="lg:block hidden">
+            <ul class="border rounded-[10px] shadow-md">
+                <li class="border-b">
+                    <button class="w-full flex items-center hover:bg-[#f3f6f9] ">
+                        <img src="/src/img/3.png" alt="">
+                        <h1>Nem</h1>
+                    </button>
+                </li>
+                <li class="border-b">
+                    <button class="w-full flex items-center hover:bg-[#f3f6f9] ">
+                        <img src="/src/img/3.png" alt="">
+                        <h1>Nem</h1>
+                    </button>
+                </li>
+                <li class="border-b">
+                    <button class="w-full flex items-center hover:bg-[#f3f6f9] ">
+                        <img src="/src/img/3.png" alt="">
+                        <h1>Nem</h1>
+                    </button>
+                </li>
+
+            </ul>
+        </div>
+        <div
+            class="lg:col-span-3 sm:col-span-2 grid lg:grid-cols-3 md:grid-cols-2 sm:grid-cols-2 grid-cols-2 gap-[15px]">
+            <div class="">
+                <button href=""
+                    class="border rounded-[5px] shadow-lg text-center hover:border-[#0faf25] hover:border-[2px]"
+                    data-modal-toggle="ProductDetail">
+                    <img src="/src/img/2.jpg" alt=""
+                        class="sm:px-[20px] px-[10px] sm:pt-[20px] pt-[10px] pb-[10px] hover:scale-105 duration-200">
+                    <h1 class="sm:text-[20px] text-[16px] font-[700]">100.000 VND</h1>
+                    <h1 class="sm:text-[16px] text-[12px] font-[500] line-through text-[#919191]">100.000 VND</h1>
+                    <h2 class="sm:text-[18px] text-[14px] pb-[20px]">Nem Nuong Nha Trang</h2>
+                </button>
+            </div>
+            <div class="">
+                <button href=""
+                    class="border rounded-[5px] shadow-lg text-center hover:border-[#0faf25] hover:border-[2px]"
+                    data-modal-toggle="ProductDetail">
+                    <img src="/src/img/2.jpg" alt=""
+                        class="sm:px-[20px] px-[10px] sm:pt-[20px] pt-[10px] pb-[10px] hover:scale-105 duration-200">
+                    <h1 class="sm:text-[20px] text-[16px] font-[700]">100.000 VND</h1>
+                    <h1 class="sm:text-[16px] text-[12px] font-[500] line-through text-[#919191]">100.000 VND</h1>
+                    <h2 class="sm:text-[18px] text-[14px] pb-[20px]">Nem Nuong Nha Trang</h2>
+                </button>
+            </div>
+            <div class="">
+                <button href=""
+                    class="border rounded-[5px] shadow-lg text-center hover:border-[#0faf25] hover:border-[2px]"
+                    data-modal-toggle="ProductDetail">
+                    <img src="/src/img/2.jpg" alt=""
+                        class="sm:px-[20px] px-[10px] sm:pt-[20px] pt-[10px] pb-[10px] hover:scale-105 duration-200">
+                    <h1 class="sm:text-[20px] text-[16px] font-[700]">100.000 VND</h1>
+                    <h1 class="sm:text-[16px] text-[12px] font-[500] line-through text-[#919191]">100.000 VND</h1>
+                    <h2 class="sm:text-[18px] text-[14px] pb-[20px]">Nem Nuong Nha Trang</h2>
+                </button>
+            </div>
+            <div class="">
+                <button href=""
+                    class="border rounded-[5px] shadow-lg text-center hover:border-[#0faf25] hover:border-[2px]"
+                    data-modal-toggle="ProductDetail">
+                    <img src="/src/img/2.jpg" alt=""
+                        class="sm:px-[20px] px-[10px] sm:pt-[20px] pt-[10px] pb-[10px] hover:scale-105 duration-200">
+                    <h1 class="sm:text-[20px] text-[16px] font-[700]">100.000 VND</h1>
+                    <h1 class="sm:text-[16px] text-[12px] font-[500] line-through text-[#919191]">100.000 VND</h1>
+                    <h2 class="sm:text-[18px] text-[14px] pb-[20px]">Nem Nuong Nha Trang</h2>
+                </button>
+            </div>
+        </div>
+
+        <div class="">
+            <div class=" ">
+                <img src="/src/img/4.png" alt="" class=" mx-auto">
+            </div>
+        </div>
+    </main>
+    <footer>
+        <div>
+
+        </div>
+        <div class="border-t sm:py-[20px] py-[10px] text-center sm:mx-[30px] mx-[10px]">
+            <h1 class="sm:text-[16px] text-[12px]">© Copyright 2022 RedQ, Inc. All rights reserved</h1>
+        </div>
+    </footer>
+
+
+
+    <script src="https://unpkg.com/flowbite@1.5.5/dist/flowbite.js"></script>
+
+
+</body>
+
+</html>
