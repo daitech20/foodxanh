@@ -14,23 +14,20 @@
 
 <body class="">
 
-    <header class="fixed flex items-center justify-between bg-white sm:px-[30px] px-[10px] w-full border-b-[1px] ">
+    <header class="fixed  flex items-center justify-between bg-[#e5fdcf] sm:px-[30px] px-[10px] w-full border-b-[1px] ">
         <!-- Logo -->
         <div class="flex items-center">
-            <button><i class="fa-solid fa-bars sm:text-[24px] text-[16px]"></i></button>
-            <h1 class="sm:text-[28px] text-[26px] font-[700] pl-[20px] text-[#48df6e] ">
-                <a href="" class="italic">FoodXanh</a>
-            </h1>
+            <a href=""><img src="/src/img/logo.png" alt="" class="sm:h-[40px] h-[30px] w-auto"></a>
         </div>
         <!-- Search -->
         <div class="items-center py-[14px] sm:block hidden">
-            <input type="text"
-                class="h-[50px] border lg:w-[500px] md:w-[380px] sm:w-[260px] pl-[20px] rounded-tl-[10px] rounded-bl-[10px]"
-                placeholder="Search Here">
-            <button class="border h-[50px] px-[20px] rounded-tr-[10px]  rounded-br-[10px]">
-                <i class="fa-solid fa-magnifying-glass text-[16px]"></i>
+            <input type="search" class="h-[50px] shadow-md border-none bg-white  lg:w-[500px] md:w-[380px] sm:w-[260px] pl-[20px] rounded-tl-[10px] rounded-bl-[10px] 
+                " placeholder="Nhập tìm kiếm">
+            <button class=" bg-white h-[50px] shadow-md px-[20px] rounded-tr-[10px] rounded-br-[10px]">
+                <i class="fa-solid fa-magnifying-glass text-[16px] text-[#00a7bd]"></i>
             </button>
         </div>
+        <!-- Search Hidden -->
         <div class="sm:hidden block py-[14px]">
             <button>
                 <i class="fa-solid fa-magnifying-glass sm:text-[24px] text-[16px]"></i>
@@ -38,9 +35,9 @@
         </div>
         <!-- icon Cart -->
         <div>
-            <button class="flex items-center" type="button" data-modal-toggle="MyCart">
-                <i class="fa-solid fa-cart-shopping sm:text-[24px] text-[16px]"></i>
-                <span class="bg-red-600 text-white rounded-full px-[7px]">1</span>
+            <button class=" flex items-center w-[50px] h-[50px] hover:scale-110" data-modal-toggle="MyCart">
+                <ion-icon name="cart-outline" class="text-[28px] "></ion-icon>
+                <span class=" text-[14px] text-white bg-[#f55252] rounded-full px-[6px]">1</span>
             </button>
         </div>
 
@@ -303,13 +300,14 @@
         </div>
     </div>
 
-    <!-- banner -->
+    <!-- banner  -->
     <nav class="sm:mx-[30px] mx-[20px] sm:pt-[100px] pt-[70px]">
         <div>
             <img src="/src/img/1.png" alt="">
         </div>
     </nav>
 
+    <!-- Category hidden -->
     <div class="lg:hidden block py-[10px] ">
         <button class="flex items-center  text-[18px] font-[600] mx-auto" data-modal-toggle="cate">
             <ion-icon name="apps-outline"></ion-icon>
@@ -324,23 +322,22 @@
             <ul class="border rounded-[10px] shadow-md">
                 <li class="border-b">
                     <button class="w-full flex items-center hover:bg-[#f3f6f9] ">
-                        <img src="/src/img/3.png" alt="">
+                        <img src="/src/img/Nem.png" alt="" class="h-[60px] w-[60px] p-[6px]">
                         <h1>Nem</h1>
                     </button>
                 </li>
                 <li class="border-b">
                     <button class="w-full flex items-center hover:bg-[#f3f6f9] ">
-                        <img src="/src/img/3.png" alt="">
+                        <img src="/src/img/Cha.png" alt="" class="h-[60px] w-[60px] p-[6px]">
                         <h1>Nem</h1>
                     </button>
                 </li>
                 <li class="border-b">
                     <button class="w-full flex items-center hover:bg-[#f3f6f9] ">
-                        <img src="/src/img/3.png" alt="">
+                        <img src="/src/img/kho.png" alt="" class="h-[60px] w-[60px] p-[6px]">
                         <h1>Nem</h1>
                     </button>
                 </li>
-
             </ul>
         </div>
         <div
@@ -356,56 +353,69 @@
                     <h2 class="sm:text-[18px] text-[14px] pb-[20px]">Nem Nuong Nha Trang</h2>
                 </button>
             </div>
-            <div class="">
-                <button href=""
-                    class="border rounded-[5px] shadow-lg text-center hover:border-[#0faf25] hover:border-[2px]"
-                    data-modal-toggle="ProductDetail">
-                    <img src="/src/img/2.jpg" alt=""
-                        class="sm:px-[20px] px-[10px] sm:pt-[20px] pt-[10px] pb-[10px] hover:scale-105 duration-200">
-                    <h1 class="sm:text-[20px] text-[16px] font-[700]">100.000 VND</h1>
-                    <h1 class="sm:text-[16px] text-[12px] font-[500] line-through text-[#919191]">100.000 VND</h1>
-                    <h2 class="sm:text-[18px] text-[14px] pb-[20px]">Nem Nuong Nha Trang</h2>
-                </button>
-            </div>
-            <div class="">
-                <button href=""
-                    class="border rounded-[5px] shadow-lg text-center hover:border-[#0faf25] hover:border-[2px]"
-                    data-modal-toggle="ProductDetail">
-                    <img src="/src/img/2.jpg" alt=""
-                        class="sm:px-[20px] px-[10px] sm:pt-[20px] pt-[10px] pb-[10px] hover:scale-105 duration-200">
-                    <h1 class="sm:text-[20px] text-[16px] font-[700]">100.000 VND</h1>
-                    <h1 class="sm:text-[16px] text-[12px] font-[500] line-through text-[#919191]">100.000 VND</h1>
-                    <h2 class="sm:text-[18px] text-[14px] pb-[20px]">Nem Nuong Nha Trang</h2>
-                </button>
-            </div>
-            <div class="">
-                <button href=""
-                    class="border rounded-[5px] shadow-lg text-center hover:border-[#0faf25] hover:border-[2px]"
-                    data-modal-toggle="ProductDetail">
-                    <img src="/src/img/2.jpg" alt=""
-                        class="sm:px-[20px] px-[10px] sm:pt-[20px] pt-[10px] pb-[10px] hover:scale-105 duration-200">
-                    <h1 class="sm:text-[20px] text-[16px] font-[700]">100.000 VND</h1>
-                    <h1 class="sm:text-[16px] text-[12px] font-[500] line-through text-[#919191]">100.000 VND</h1>
-                    <h2 class="sm:text-[18px] text-[14px] pb-[20px]">Nem Nuong Nha Trang</h2>
-                </button>
-            </div>
+
+
         </div>
 
-        <div class="">
+        <div class="sm:block grid grid-cols-2 gap-[10px]">
             <div class=" ">
-                <img src="/src/img/4.png" alt="" class=" mx-auto">
+                <img src="/src/img/poster1.jpg" alt="" class=" mx-auto rounded-[6px]">
             </div>
+
         </div>
     </main>
-    <footer>
-        <div>
+    <!-- banner2 -->
+    <nav class="grid grid-cols-2">
 
+    </nav>
+    <footer class="bg-[#141414] text-white">
+        <div class="grid sm:grid-cols-2 grid-cols-1 px-[30px] gap-[50px]">
+            <div class="pt-[20px]">
+                <a href=""><img src="/src/img/logo.png" alt="" class="sm:h-[40px] h-[30px] w-auto"></a>
+                <h1 class="text-[16px] py-[10px] text-[#727272]">Cảm ơn bạn đã ghé thăm và ủng hộ chúng tôi..</h1>
+            </div>
         </div>
         <div class="border-t sm:py-[20px] py-[10px] text-center sm:mx-[30px] mx-[10px]">
             <h1 class="sm:text-[16px] text-[12px]">© Copyright 2022 RedQ, Inc. All rights reserved</h1>
         </div>
     </footer>
+    <!--  -->
+    <div data-dial-init class="fixed right-6 bottom-6 group">
+        <div id="speed-dial-menu-default" class="flex flex-col items-center mb-4 space-y-2">
 
+            <button type="button" data-tooltip-target="tooltip-share" data-tooltip-placement="left"
+                class="flex justify-center items-center w-[52px] h-[52px] text-gray-500 hover:text-gray-900 bg-white rounded-full border border-gray-200  shadow-sm  hover:bg-gray-50 focus:ring-4 focus:ring-gray-300 focus:outline-none">
+                <i class="fa-brands fa-facebook-messenger"></i>
+            </button>
+
+            <div id="tooltip-share" role="tooltip"
+                class="inline-block absolute invisible z-10 py-2 px-3 w-auto text-sm font-medium text-white bg-gray-900 rounded-lg shadow-sm opacity-0 transition-opacity duration-300 tooltip dark:bg-gray-700">
+                Message
+                <div class="tooltip-arrow" data-popper-arrow></div>
+            </div>
+
+            <button type="button" data-tooltip-target="tooltip-print" data-tooltip-placement="left"
+                class="flex justify-center items-center w-[52px] h-[52px] text-gray-500 hover:text-gray-900 bg-white rounded-full border border-gray-200  shadow-sm  hover:bg-gray-50  focus:ring-4 focus:ring-gray-300 focus:outline-none ">
+                <ion-icon name="logo-whatsapp"></ion-icon>
+                <span class="sr-only">Phone</span>
+            </button>
+            <div id="tooltip-print" role="tooltip"
+                class="inline-block absolute invisible z-10 py-2 px-3 w-auto text-sm font-medium text-white bg-gray-900 rounded-lg shadow-sm opacity-0 transition-opacity duration-300 tooltip dark:bg-gray-700">
+                Phone
+                <div class="tooltip-arrow" data-popper-arrow></div>
+            </div>
+        </div>
+        <button type="button" data-dial-toggle="speed-dial-menu-default" aria-controls="speed-dial-menu-default"
+            aria-expanded="false"
+            class="flex justify-center items-center w-14 h-14 text-white bg-blue-700 rounded-full hover:bg-blue-800  focus:ring-4 focus:ring-blue-300 focus:outline-none ">
+            <svg aria-hidden="true" class="w-8 h-8 transition-transform group-hover:rotate-45" fill="none"
+                stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6v6m0 0v6m0-6h6m-6 0H6">
+                </path>
+            </svg>
+            <span class="sr-only">Open actions menu</span>
+        </button>
+    </div>
 
 
     <script src="https://unpkg.com/flowbite@1.5.5/dist/flowbite.js"></script>
