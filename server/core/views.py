@@ -1,8 +1,10 @@
 from django.shortcuts import render
 from .serializers import OrderSerializer, ProductSerializer, OrderDetailSerializer, OrderDetailUpdateSerializer
-from .models import Order, Product, OrderDetail
+from .models import Order, Product, OrderDetail, ProductCategory, ProductImage
 from rest_framework import generics, status
+from django import template
 
+register = template.Library()
 
 # Create your views here.
 class OrderView(generics.RetrieveUpdateDestroyAPIView):
@@ -35,4 +37,10 @@ class ProductDetail(generics.RetrieveUpdateDestroyAPIView):
 
 
 def index(request):
-    return render(request, 'index.html')
+    data = {
+        "product_categories": ProductCategory.objects.all(),
+        "products": Product.objects.all(),
+        "product_images": ProductImage.objects.all()
+    }
+
+    return render(request, 'index.html', data)

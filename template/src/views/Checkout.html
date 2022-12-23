@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <!-- <script src="https://cdn.tailwindcss.com"></script> -->
+    <link href="../../dist/output.css" rel="stylesheet">
+    <script src="https://kit.fontawesome.com/f662e8ecc5.js" crossorigin="anonymous"></script>
+    <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
+    <script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
+</head>
+
+<body class="">
+    <main
+        class="grid lg:grid-cols-2 grid-cols-1 xl:px-[60px] lg:px-[20px] sm:px-[100px] px-[10px] sm:py-[50px] py-[30px] xl:gap-[40px] lg:gap-[20px]">
+        <!-- infor  -->
+        <div class="">
+            <div class="border rounded-[10px] shadow-lg xl:px-[50px] lg:px-[20px] px-[14px]">
+                <div class="text-center py-[10px]">
+                    <h1 class="sm:text-[24px] text-[20px] font-[600]">Thông tin khách hàng</h1>
+                </div>
+                <!-- Name -->
+                <div class="pb-[16px]">
+                    <h1 class="text-[16px] font-[600] py-[2px]">
+                        Họ và tên
+                        <span class="text-red-600">(*)</span>
+                    </h1>
+                    <input type="text" class="w-full rounded-[6px] border-[2px]  border-[#272727] focus:scale-105"
+                        placeholder="* Trần Huy Hoàng">
+                </div>
+                <!-- Phone -->
+                <div class="pb-[16px]">
+                    <h1 class="text-[16px] font-[600] py-[2px]">
+                        Số điện thoại
+                        <span class="text-red-600">(*)</span>
+                    </h1>
+                    <input type="text" class="w-full rounded-[6px] border-[2px]  border-[#272727] focus:scale-105"
+                        placeholder="* 0345023112">
+                </div>
+                <!-- Address -->
+                <div class=" sm:flex items-center justify-between">
+                    <div class="pb-[16px]">
+                        <h1 class="text-[16px] font-[600] py-[2px]">
+                            Tỉnh / Thành phố
+                            <span class="text-red-600">(*)</span>
+                        </h1>
+                        <input type="text"
+                            class="sm:w-auto w-full rounded-[6px] border-[2px]  border-[#272727] focus:scale-105"
+                            placeholder="* Hồ Chí Minh">
+                    </div>
+                    <div class="pb-[16px]">
+                        <h1 class="text-[16px] font-[600] py-[2px]">
+                            Quận / Huyện
+                            <span class="text-red-600">(*)</span>
+                        </h1>
+                        <input type="text"
+                            class="sm:w-auto w-full rounded-[6px] border-[2px]  border-[#272727] focus:scale-105"
+                            placeholder="* Quận 9">
+                    </div>
+                </div>
+                <div class="sm:flex items-center justify-between">
+                    <div class="pb-[16px]">
+                        <h1 class="text-[16px] font-[600] py-[2px]">
+                            Phường / Xã
+                            <span class="text-red-600">(*)</span>
+                        </h1>
+                        <input type="text"
+                            class="sm:w-auto w-full rounded-[6px] border-[2px]  border-[#272727] focus:scale-105"
+                            placeholder="* Hồ Chí Minh">
+                    </div>
+                    <div class="pb-[16px]">
+                        <h1 class="text-[16px] font-[600] py-[2px]">
+                            Số nhà / đường
+                            <span class="text-red-600">(*)</span>
+                        </h1>
+                        <input type="text"
+                            class="sm:w-auto w-full rounded-[6px] border-[2px]  border-[#272727] focus:scale-105"
+                            placeholder="* 101/54c">
+                    </div>
+                </div>
+                <!-- Time -->
+                <div class="pb-[16px]">
+                    <h1 class="text-[16px] font-[600] py-[2px]">
+                        Thời gian có thể nhận hàng
+                        <span class="text-red-600">(*)</span>
+                    </h1>
+                    <ul class="flex flex-wrap items-center justify-between pt-[6px] sm:text-[16px] text-[14px]">
+                        <li>
+                            <input type="radio" id="1" name="hosting" value="1" class="hidden peer" required>
+                            <label for="1"
+                                class="inline-flex justify-between items-center p-[10px] w-full  bg-white rounded-[10px] border-[1px] cursor-pointer  peer-checked:border-[#1a8f4f] peer-checked:text-[#2fa564] hover:scale-105 hover:border-blue-600 ">
+                                <div class="block">
+                                    <div class="font-[500]">Giờ hành chính</div>
+                                </div>
+                            </label>
+                        </li>
+                        <li>
+                            <input type="radio" id="2" name="hosting" value="2" class="hidden peer" required>
+                            <label for="2"
+                                class="inline-flex justify-between items-center p-[10px] w-full  bg-white rounded-[10px] border-[1px] cursor-pointer  peer-checked:border-[#1a8f4f] peer-checked:text-[#2fa564] hover:scale-105 hover:border-blue-600 ">
+                                <div class="block">
+                                    <div class="font-[500]">Ngoài giờ hành chính</div>
+                                </div>
+                            </label>
+                        </li>
+                        <li>
+                            <input type="radio" id="3" name="hosting" value="3" class="hidden peer" required>
+                            <label for="3"
+                                class="inline-flex justify-between items-center p-[10px] w-full  bg-white rounded-[10px] border-[1px] cursor-pointer  peer-checked:border-[#1a8f4f] peer-checked:text-[#2fa564] hover:scale-105 hover:border-blue-600 ">
+                                <div class="block">
+                                    <div class="font-[500]">Cả ngày</div>
+                                </div>
+                            </label>
+                        </li>
+                    </ul>
+                </div>
+
+            </div>
+        </div>
+        <!--  -->
+        <div>
+            <div class="border shadow-lg rounded-[6px] sm:px-[30px] px-[10px] lg:mt-0 mt-[30px]">
+                <div class="flex items-center border-b py-[20px] justify-between text-[16px] font-[500]">
+                    <h1>Sản phẩm</h1>
+                    <h2>Đơn giá</h2>
+                </div>
+                <div class="flex items-center justify-between border-b py-[10px] sm:text-[16px] text-[14px]">
+                    <div class="border rounded-[6px]">
+                        <img src="/src/img/2.jpg" alt="" class="h-[70px] w-auto p-[7px]">
+                    </div>
+                    <h2 class="font-[500] px-[4px] ">Nem nuong nha trang</h2>
+                    <h3 class="">100.000 Vnd</h3>
+                </div>
+                <div class="flex items-center justify-between border-b py-[10px] sm:text-[16px] text-[14px]">
+                    <div class="border rounded-[6px]">
+                        <img src="/src/img/2.jpg" alt="" class="h-[70px] w-auto p-[7px]">
+                    </div>
+                    <h2 class="font-[500] px-[4px] ">Nem nuong nha trang</h2>
+                    <h3 class="">100.000 Vnd</h3>
+                </div>
+
+                <div class="flex items-center justify-between py-[10px] border-b">
+                    <h1 class="font-[500]">Tiền :</h1>
+                    <h2>100.000 VND</h2>
+                </div>
+                <div class="flex items-center justify-between py-[10px] border-b">
+                    <h1 class="font-[500]">Phí vận chuyển :</h1>
+                    <h2>100.000 VND</h2>
+                </div>
+                <div class="flex items-center justify-between py-[10px] border-b">
+                    <h1 class="font-[500]">Tổng tiền :</h1>
+                    <h2>100.000 VND</h2>
+                </div>
+                <div class="sm:py-[30px] py-[20px]">
+                    <button class="w-full bg-[#1db863] sm:h-[50px] h-[40px] rounded-[6px] text-white text-[18px] ">
+                        Đặt hàng ngay
+                    </button>
+                </div>
+            </div>
+        </div>
+    </main>
+    <script src="../../node_modules/flowbite/dist/flowbite.js"></script>
+</body>
+
+</html>
