@@ -48,9 +48,9 @@
         </div>
         <!-- icon Cart -->
         <div>
-            <button class="flex items-center" type="button" data-modal-toggle="MyCart">
+            <button class="flex items-center" type="button" data-modal-toggle="MyCart" onclick="openCart()">
                 <i class="fa-solid fa-cart-shopping sm:text-[24px] text-[16px]"></i>
-                <span class="bg-red-600 text-white rounded-full px-[7px]">1</span>
+                <span class="bg-red-600 text-white rounded-full px-[7px]" id="total_items">1</span>
             </button>
         </div>
     </header>
@@ -67,72 +67,23 @@
                     <div class="flex items-center justify-between sm:pb-[20px] pb-[10px] border-b ">
                         <h1 class="sm:text-[24px] text-[18x] font-[700]">Giỏ hàng</h1>
                         <div class="flex items-center sm:text-[16px] text-[14px]">
-                            <button class="flex items-center text-[#575757] pr-[10px] hover:text-red-600">
+                            <button class="flex items-center text-[#575757] pr-[10px] hover:text-red-600" onclick="delete_all_items()">
                                 <i class="fa-solid fa-trash"></i>
                                 <h1 class="pl-[6px]">Xóa tất cả</h1>
                             </button>
-                            <button data-modal-toggle="MyCart"
+                            <button data-modal-toggle="MyCart" onclick="hideCart()"
                                 class="text-[24px] pl-[20px] font-[600] hover:scale-110 hover:text-red-600  "><i
                                     class="fa-solid fa-xmark"></i></button>
                         </div>
                     </div>
                     <!-- San pham trong gio hang -->
-                    <div class="flex items-center justify-between py-[10px] border-b">
-                        <div class="sm:p-[10px] p-[6px] border rounded-[5px]">
-                            <img src="/src/img/2.jpg" alt="" class="sm:h-[90px] h-[70px] w-auto">
-                        </div>
-                        <div class="sm:text-[18px] text-[13px] font-[600] ">
-                            <h1 class="">Nem chua nha trang</h1>
-                            <h2 class="sm:text-[16px] text-[12px] line-through text-[#919191] italic font-[400] ">95.000
-                                VND</h2>
-                            <h3 class="font-[500] ">100.000 VND</h3>
-
-                            <div class="flex items-center ">
-                                <button
-                                    class="border-[2px] rounded-full sm:px-[6px] px-[4px] hover:border-red-600 hover:text-red-600"><i
-                                        class="fa-solid fa-plus"></i></button>
-                                <h1 class="sm:px-[20px] px-[10px]">1</h1>
-                                <button
-                                    class="border-[2px] rounded-full sm:px-[6px] px-[4px] hover:border-red-600 hover:text-red-600"><i
-                                        class="fa-solid fa-minus"></i></button>
-                            </div>
-                        </div>
-                        <div>
-                            <button class="text-[22px] hover:text-red-600 ">
-                                <i class="fa-regular fa-circle-xmark"></i>
-                            </button>
-                        </div>
-                    </div>
-                    <div class="flex items-center justify-between py-[10px] border-b">
-                        <div class="sm:p-[10px] p-[6px] border rounded-[5px]">
-                            <img src="/src/img/2.jpg" alt="" class="sm:h-[90px] h-[70px] w-auto">
-                        </div>
-                        <div class="sm:text-[18px] text-[13px] font-[600] ">
-                            <h1 class="">Nem chua nha trang</h1>
-                            <h2 class="sm:text-[16px] text-[12px] line-through text-[#919191] italic font-[400] ">95.000
-                                VND</h2>
-                            <h3 class="font-[500] ">100.000 VND</h3>
-
-                            <div class="flex items-center ">
-                                <button
-                                    class="border-[2px] rounded-full sm:px-[6px] px-[4px] hover:border-red-600 hover:text-red-600"><i
-                                        class="fa-solid fa-plus"></i></button>
-                                <h1 class="sm:px-[20px] px-[10px]">1</h1>
-                                <button
-                                    class="border-[2px] rounded-full sm:px-[6px] px-[4px] hover:border-red-600 hover:text-red-600"><i
-                                        class="fa-solid fa-minus"></i></button>
-                            </div>
-                        </div>
-                        <div>
-                            <button class="text-[22px] hover:text-red-600 ">
-                                <i class="fa-regular fa-circle-xmark"></i>
-                            </button>
-                        </div>
+                    <div id="cart_items">
+                        <!--for loop-->
                     </div>
                     <!--Money-->
                     <div class="flex justify-between sm:text-[20px] text-[14px] font-[600] border-t pt-[10px]">
                         <h1>Tổng tiền :</h1>
-                        <h2>100.000 VND</h2>
+                        <h2 id="total_price">100.000 VND</h2>
                     </div>
                     <div class="sm:text-[16px] text-[14px] text-[#4e4e4e] sm:my-[20px] my-[10px]">
                         <h1>Bấm thanh toán ngay để tiến hành quá trình thanh toán .
@@ -162,6 +113,131 @@
 
     <script src="https://unpkg.com/flowbite@1.5.5/dist/flowbite.js"></script>
     
+    <script>
+
+        function openCart() {
+            update_total_price_items()
+            var cart = JSON.parse(localStorage.getItem('my_cart'));
+
+            for (key in cart.items) {
+                var div = document.createElement('div');
+                div.setAttribute('class', 'flex items-center justify-between py-[10px] border-b');
+                div.setAttribute('id', 'item_'+key);
+                div.innerHTML = `
+                <div class="sm:p-[10px] p-[6px] border rounded-[5px]">
+                    <img src="${cart.items[key].image}" alt="" class="sm:h-[90px] h-[70px] w-auto">
+                </div>
+                <div class="sm:text-[18px] text-[13px] font-[600] ">
+                    <h1 class="">${cart.items[key].name}</h1>
+                    <h3 class="">size ${ cart.items[key].attributes_product.find(x => x.id == cart.items[key].attributes_product_choice ).product_size.size} </h3>
+                    
+                    ${ cart.items[key].attributes_product.find(x => x.id == cart.items[key].attributes_product_choice ).product_discount ?
+                       ' <h2 class="sm:text-[16px] text-[12px] line-through text-[#919191] italic font-[400] "> ' +
+                        cart.items[key].attributes_product.find(x => x.id == cart.items[key].attributes_product_choice ).product_price + ' VND </h2>' +
+                        '<h2 class="font-[500]"' + ' id="product_price_' + key + '" >' + cart.items[key].attributes_product.find(x => x.id == cart.items[key].attributes_product_choice ).product_price_discount * cart.items[key].quantity + ' VND </h2>' : '<h2 class="font-[500]"' + ' id="product_price_' + key + '" >' + cart.items[key].price * cart.items[key].quantity + ' VND </h2>'
+                    }
+                    
+                    <div class="flex items-center ">
+                        <button onclick="plus_quantity_item(${key})"
+                            class="border-[2px] rounded-full sm:px-[6px] px-[4px] hover:border-red-600 hover:text-red-600"><i
+                                class="fa-solid fa-plus"></i></button>
+                        <h1 class="sm:px-[20px] px-[10px]" id="product_quantity_item_${key}">${cart.items[key].quantity}</h1>
+                        <button onclick="minius_quantity_item(${key})"
+                            class="border-[2px] rounded-full sm:px-[6px] px-[4px] hover:border-red-600 hover:text-red-600"><i
+                                class="fa-solid fa-minus"></i></button>
+                    </div>
+                </div>
+                <div>
+                    <button class="text-[22px] hover:text-red-600 ">
+                        <i class="fa-regular fa-circle-xmark"></i>
+                    </button>
+                </div>
+                `;
+                document.getElementById('cart_items').appendChild(div);
+            }
+        }
+
+        function hideCart() {
+            var items = document.getElementById("cart_items")
+            while (items.hasChildNodes()) {
+                items.removeChild(items.firstChild);
+            }
+        }
+
+        function plus_quantity_item(key) {
+            var cart = JSON.parse(localStorage.getItem('my_cart'));
+            cart.items[key].quantity += 1
+            document.getElementById('product_quantity_item_'+key).innerHTML = cart.items[key].quantity;
+
+            if (cart.items[key].attributes_product.find(x => x.id == cart.items[key].attributes_product_choice ).product_discount) {
+                document.getElementById('product_price_'+key).innerHTML = cart.items[key].quantity * cart.items[key].attributes_product.find(x => x.id == cart.items[key].attributes_product_choice ).product_price_discount + ' VND';
+            } else {
+                document.getElementById('product_price_'+key).innerHTML = cart.items[key].quantity * cart.items[key].attributes_product.find(x => x.id == cart.items[key].attributes_product_choice ).product_price + 'VND';
+            }
+            
+            localStorage.setItem('my_cart', JSON.stringify(cart))
+            update_total_price_items()
+        }
+
+        function minius_quantity_item(key) {
+            var cart = JSON.parse(localStorage.getItem('my_cart'));
+            cart.items[key].quantity -= 1
+
+            if (cart.items[key].quantity <= 0) {
+                cart.items.splice(key, 1) 
+                var div = document.getElementById("item_"+key)
+                cart.total_items -= 1
+                div.remove()
+            } else {
+                document.getElementById('product_quantity_item_'+key).innerHTML = cart.items[key].quantity;
+
+                if (cart.items[key].attributes_product.find(x => x.id == cart.items[key].attributes_product_choice ).product_discount) {
+                    document.getElementById('product_price_'+key).innerHTML = cart.items[key].quantity * cart.items[key].attributes_product.find(x => x.id == cart.items[key].attributes_product_choice ).product_price_discount + ' VND';
+                } else {
+                    document.getElementById('product_price_'+key).innerHTML = cart.items[key].quantity * cart.items[key].attributes_product.find(x => x.id == cart.items[key].attributes_product_choice ).product_price + 'VND';
+                }
+            }
+            localStorage.setItem('my_cart', JSON.stringify(cart))
+            update_total_price_items()
+            hideCart()
+            openCart()
+        }
+
+        function update_total_price_items() {
+            var cart = JSON.parse(localStorage.getItem('my_cart'));
+            var total_price = 0;
+
+            for (key in cart.items) {
+                if (cart.items[key].attributes_product.find(x => x.id == cart.items[key].attributes_product_choice ).product_discount) {
+                    total_price += cart.items[key].quantity * cart.items[key].attributes_product.find(x => x.id == cart.items[key].attributes_product_choice ).product_price_discount;
+                } else {
+                    total_price += cart.items[key].quantity * cart.items[key].attributes_product.find(x => x.id == cart.items[key].attributes_product_choice ).product_price;                }
+            }
+
+            cart['total_price'] = total_price;
+            localStorage.setItem('my_cart', JSON.stringify(cart))
+            document.getElementById('total_price').innerHTML = total_price + ' VND';
+            document.getElementById('total_items').innerHTML = cart.total_items;
+
+        }
+
+        function delete_all_items() {
+            var cart = JSON.parse(localStorage.getItem('my_cart'));
+            var items = document.getElementById("cart_items")
+            while (items.hasChildNodes()) {
+                items.removeChild(items.firstChild);
+            }
+            cart.is_empty = true
+            cart.total_price = 0
+            cart.total_items = 0
+            cart.items = []
+            document.getElementById('total_price').innerHTML ='0 VND';
+            document.getElementById('total_items').innerHTML = 0;
+            localStorage.setItem('my_cart', JSON.stringify(cart))
+        }
+
+    </script>
+
 </body>
 
 </html>

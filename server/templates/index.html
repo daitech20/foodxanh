@@ -6,12 +6,27 @@
 class="fixed top-0 left-0 right-0 z-50 hidden  w-full p-4 overflow-x-hidden overflow-y-auto md:inset-0 h-modal md:h-full">
 <div class="relative w-full h-full max-w-6xl max-h-[600px] md:h-auto">
     <div class="relative bg-white rounded-lg shadow ">
-        <!-- Content cart -->
+        <!--notification-->
+        <div id="alert-2" class="flex p-4 mb-4 bg-red-100 rounded-lg dark:bg-red-200 hidden" role="alert">
+            <svg aria-hidden="true" class="flex-shrink-0 w-5 h-5 text-red-700 dark:text-red-800" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7-4a1 1 0 11-2 0 1 1 0 012 0zM9 9a1 1 0 000 2v3a1 1 0 001 1h1a1 1 0 100-2v-3a1 1 0 00-1-1H9z" clip-rule="evenodd"></path></svg>
+            <span class="sr-only">Info</span>
+            <div class="ml-3 text-sm font-medium text-red-700 dark:text-red-800">
+                Bạn vui lòng chọn kích cỡ sản phẩm.
+            </div>
+        </div>
+        <div id="alert-1" class="flex p-4 mb-4 text-sm text-green-700 bg-green-100 rounded-lg dark:bg-green-200 dark:text-green-800 hidden" role="alert">
+            <svg aria-hidden="true" class="flex-shrink-0 inline w-5 h-5 mr-3" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7-4a1 1 0 11-2 0 1 1 0 012 0zM9 9a1 1 0 000 2v3a1 1 0 001 1h1a1 1 0 100-2v-3a1 1 0 00-1-1H9z" clip-rule="evenodd"></path></svg>
+            <span class="sr-only">Info</span>
+            <div>
+              <span class="font-medium">Sản phẩm đã được thêm vào giỏ hàng!</span>
+            </div>
+        </div>
+         <!-- Content cart -->
         <div class="sm:p-[30px] p-[10px]">
             <div class="flex items-center justify-between pb-[20px] sm:text-[24px] text-[20px] font-[700]">
                 <h1 class="">Chi tiết sản phẩm</h1>
                 {{action}}
-                <button data-modal-toggle="ProductDetail" onclick="hideModal()"><i class="fa-solid fa-xmark"></i></button>
+                <button data-modal-toggle="ProductDetail" onclick="hideModal(false)" id="button_close"><i class="fa-solid fa-xmark"></i></button>
             </div>
             <div class="grid md:grid-cols-5 grid-cols-1 gap-[40px]">
                 <!--  -->
@@ -72,11 +87,11 @@ class="fixed top-0 left-0 right-0 z-50 hidden  w-full p-4 overflow-x-hidden over
                     </ul>
                     <div
                         class="flex items-center justify-center my-[10px] rounded-[6px] bg-[#f3f5f9] sm:h-[50px] h-[40px]">
-                        <button><i class="fa-solid fa-plus"></i></button>
-                        <h1 class="text-[24px] px-[40px]">1</h1>
-                        <button><i class="fa-solid fa-minus"></i></button>
+                        <button id="plus_quantity"><i class="fa-solid fa-plus" onclick="plus_quantity()"></i></button>
+                            <h1 class="text-[24px] px-[40px]" id="product_quantity" >1</h1>
+                        <button id="minus_quantity"><i class="fa-solid fa-minus" onclick="minus_quantity()"></i></button>
                     </div>
-                    <button class=" bg-[#80d8c7] w-full text-white sm:h-[50px] h-[40px] rounded-[6px]">
+                    <button class=" bg-[#04AA6D] w-full text-white sm:h-[50px] h-[40px] rounded-[6px]" onclick="addToCart()">
                         <i class="fa-solid fa-briefcase"></i>
                         Thêm vào giỏ hàng
                     </button>
@@ -155,8 +170,10 @@ class="fixed top-0 left-0 right-0 z-50 hidden  w-full p-4 overflow-x-hidden over
                     class="sm:px-[20px] px-[10px] sm:pt-[20px] pt-[10px] pb-[10px] hover:scale-105 duration-200">
                 {% if product.discount %}
                 <h1 class="sm:text-[16px] text-[12px] font-[500] line-through text-[#919191]">{{product.price_discount}} VND</h1>
-                {% endif %}
                 <h1 class="sm:text-[20px] text-[16px] font-[700]">{{product.price}} VND</h1>
+                {% else %}
+                <h1 class="sm:text-[20px] text-[16px] font-[700]">{{product.price}} VND</h1>
+                {% endif %}
                 <h2 class="sm:text-[18px] text-[14px] pb-[20px]">{{product.name}}</h2>
             </button>
         </div>
@@ -173,17 +190,35 @@ class="fixed top-0 left-0 right-0 z-50 hidden  w-full p-4 overflow-x-hidden over
 
 <script>
     var product = {};
+    var product_quantity = 1;
+    var storage = localStorage.getItem('my_cart');
+
+    if (storage != null) {
+        //
+    }
+    else {
+        var my_cart = {
+            "items": [],
+            "total_items": 0,
+            "is_empty": true
+        }
+        localStorage.setItem('my_cart', JSON.stringify(my_cart))
+    }
+
+    
+
     function getProduct(id) {
         axios.get('/api/product/'+id)
         .then(response => {
             product = response.data
-
             // name product detail
             document.getElementById('name_product_detail').innerHTML = product.name;
             // price
             document.getElementById('product_price_detail').innerHTML = product.price + ' VNĐ';
             // desc
             document.getElementById('product_desc_detail').innerHTML = product.desc;
+            // quantity
+            document.getElementById('product_quantity').innerHTML = product_quantity;
             
 
             // button_product_image
@@ -208,16 +243,16 @@ class="fixed top-0 left-0 right-0 z-50 hidden  w-full p-4 overflow-x-hidden over
                 var li = document.createElement("li");
                 var input = document.createElement("input")
                 input.type = "radio"
-                input.id = product.attributes_product[key].product_size.id
+                input.id = product.attributes_product[key].id
                 input.name = "hosting"
-                input.value = product.attributes_product[key].product_size.id
+                input.value = product.attributes_product[key].id
                 input.classList.add("hidden")
                 input.classList.add("peer")
                 input.setAttribute("required", "")
                 li.appendChild(input)
                 
                 var label = document.createElement("label")
-                label.setAttribute("for", product.attributes_product[key].product_size.id)
+                label.setAttribute("for", product.attributes_product[key].id)
                 label.classList.add("inline-flex")
                 label.classList.add("justify-between")
                 label.classList.add("items-center")
@@ -246,15 +281,74 @@ class="fixed top-0 left-0 right-0 z-50 hidden  w-full p-4 overflow-x-hidden over
         .catch(error => console.log(error))
     }
 
-    function hideModal() {
-        // var button_product_image = document.getElementById("button_product_image")
-        // while (button_product_image.hasChildNodes()) {
-        //     button_product_image.removeChild(button_product_image.firstChild);
-        // }
+    function hideModal(check) {
         var ul = document.getElementById("ul_product_size")
         while (ul.hasChildNodes()) {
             ul.removeChild(ul.firstChild);
         }
+        
+        if (check) {
+            button_close = document.getElementById("button_close")
+            button_close.click()
+        }
+
+        product_quantity = 1
     }
+
+    function addToCart() {
+        var selector = document.querySelector('input[name="hosting"]:checked') !== null;
+
+        if (selector) {
+            var attributes_product_choice = document.querySelector('input[name="hosting"]:checked').value
+            var cart = JSON.parse(localStorage.getItem('my_cart'));
+            var check_product_exists = true
+
+            for (let temp in cart.items) {
+                if (cart.items[temp].id == product.id && cart.items[temp].attributes_product_choice == attributes_product_choice ) {
+                    cart.items[temp].quantity += product_quantity
+                    check_product_exists = false
+                    localStorage.setItem('my_cart', JSON.stringify(cart))
+                    break
+                }
+            }
+            if (check_product_exists) {
+                var item = product
+                item['attributes_product_choice'] = attributes_product_choice
+                item['quantity'] = product_quantity
+                cart.is_empty = false
+                cart.total_items += 1
+                cart.items.push(item)
+                localStorage.setItem('my_cart', JSON.stringify(cart))
+                document.getElementById('total_items').innerHTML = cart.total_items;
+            }
+            var alert = document.getElementById("alert-1")
+            alert.classList.remove("hidden");
+
+            setTimeout(function() {alert.classList.add("hidden");  hideModal(true)},2000);
+        }
+        else {
+            var alert = document.getElementById("alert-2")
+            alert.classList.remove("hidden");
+
+            setTimeout(function() {alert.classList.add("hidden"); },3000);
+
+
+        }
+    }
+
+    function plus_quantity() {
+        product_quantity += 1;
+        document.getElementById('product_quantity').innerHTML = product_quantity;
+    }
+
+    function minus_quantity() {
+        if (product_quantity > 1) {
+            product_quantity -= 1;
+        }
+        document.getElementById('product_quantity').innerHTML = product_quantity;
+    }
+
+
+
 </script>
 {% endblock content %}
